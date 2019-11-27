@@ -13,6 +13,7 @@ namespace day01
                 .ToList();
 
             Part1(lines[0]);
+            Part2(lines[0]);
         }
 
         static void Part1(string input)
@@ -25,6 +26,20 @@ namespace day01
             }
 
             System.Console.WriteLine($"Part 1: Stopped at floor {floor}");
+        }
+
+        static void Part2(string input)
+        {
+            int floor = 0;
+            int pos = 0;
+            foreach (var c in input)
+            {
+                pos++;
+                if (c == '(') floor++;
+                if (c == ')') floor--;
+
+                if (floor == -1) System.Console.WriteLine($"Part 2: Position {pos} is at floor -1");
+            }
         }
     }
 }
