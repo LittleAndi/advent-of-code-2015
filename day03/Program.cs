@@ -22,16 +22,26 @@ namespace day03
             Dictionary<Position, int> deliveredPresents = new Dictionary<Position, int>();
 
             var currentPosition = new Position { X = 0, Y = 0 };
-            deliveredPresents.Add(currentPosition, 1);
+            deliveredPresents.Add((Position)currentPosition.Clone(), 1);
             foreach (var direction in directions)
             {
+                currentPosition.Move(direction);
 
-                var pos = new Position { };
+                if (deliveredPresents.ContainsKey(currentPosition))
+                {
+                    deliveredPresents[currentPosition]++;
+                }
+                else
+                {
+                    deliveredPresents.Add((Position)currentPosition.Clone(), 1);
+                }
             }
+
+            System.Console.WriteLine($"{deliveredPresents.Where(p => p.Value >= 1).Count()}");
         }
     }
 
-    public class Position
+    public class Position : IEquatable<Position>, ICloneable
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -55,19 +65,27 @@ namespace day03
             }
         }
 
-        // override object.Equals
-        public override bool Equals(object obj)
+        public bool Equals(Position other)
         {
-            var p = (Position)obj;
-            return p.X == X && p.Y == Y;
+            if (other is null) return false;
+
+            return other.X == this.X && other.Y == this.Y;
         }
 
-        // override object.GetHashCode
-        public override int GetHashCode()
+        public override bool Equals(object obj) => Equals(obj as Position);
+        public override int GetHashCode() => (X, Y).GetHashCode();
+        public override string ToString() => $"({X},{Y})";
+
+        public object Clone()
         {
-            // TODO: write your implementation of GetHashCode() here
-            throw new System.NotImplementedException();
-            return base.GetHashCode();
+            var p = new Position
+            {
+                X = this.X,
+                Y = this.Y
+            };
+
+            return p;
         }
+
     }
 }
