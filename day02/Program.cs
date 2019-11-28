@@ -20,12 +20,20 @@ namespace day02
                 .ToList();
 
             Part1(presents);
+
+            Part2(presents);
         }
 
         static void Part1(List<Present> presents)
         {
             var totalPaper = presents.Select(p => p.WrappingPaper + p.Slack).Sum();
-            System.Console.WriteLine($"{totalPaper} sq ft is needed.");
+            System.Console.WriteLine($"{totalPaper} sq ft of total paper is needed.");
+        }
+
+        static void Part2(List<Present> presents)
+        {
+            var totalRibbon = presents.Select(p => p.RibbonWrap + p.RibbonBow).Sum();
+            System.Console.WriteLine($"{totalRibbon} ft of total ribbon needed.");
         }
     }
 
