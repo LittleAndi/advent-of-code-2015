@@ -37,5 +37,35 @@ namespace day02test
 
             present.Slack.ShouldBe(expectedSlack);
         }
+
+        [Theory]
+        [InlineData(2, 3, 4, 10)]
+        [InlineData(1, 1, 10, 4)]
+        public void TestRibbonWrap(int l, int w, int h, int expectedRibbon)
+        {
+            var present = new Present
+            {
+                Length = l,
+                Width = w,
+                Height = h
+            };
+
+            present.RibbonWrap.ShouldBe(expectedRibbon);
+        }
+
+        [Theory]
+        [InlineData(2, 3, 4, 24)]
+        [InlineData(1, 1, 10, 10)]
+        public void TestRibbonBow(int l, int w, int h, int expectedRibbon)
+        {
+            var present = new Present
+            {
+                Length = l,
+                Width = w,
+                Height = h
+            };
+
+            present.RibbonBow.ShouldBe(expectedRibbon);
+        }
     }
 }
