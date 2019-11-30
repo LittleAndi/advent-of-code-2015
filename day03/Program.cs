@@ -14,7 +14,7 @@ namespace day03
                 .ToList();
 
             Part1(lines[0]);
-
+            Part2(lines[0]);
         }
 
         static void Part1(string directions)
@@ -37,8 +37,50 @@ namespace day03
                 }
             }
 
-            System.Console.WriteLine($"{deliveredPresents.Where(p => p.Value >= 1).Count()}");
+            System.Console.WriteLine($"Part 1: Delivered presents to {deliveredPresents.Where(p => p.Value >= 1).Count()} houses.");
         }
+
+ 
+        static void Part2(string directions)
+        {
+            Dictionary<Position, int> deliveredPresents = new Dictionary<Position, int>();
+
+            var currentPosition1 = new Position { X = 0, Y = 0 };
+            var currentPosition2 = new Position { X = 0, Y = 0 };
+            deliveredPresents.Add((Position)currentPosition1.Clone(), 2);
+            bool santa = true;
+            foreach (var direction in directions)
+            {
+                if (santa)
+                {
+                    currentPosition1.Move(direction);
+                    if (deliveredPresents.ContainsKey(currentPosition1))
+                    {
+                        deliveredPresents[currentPosition1]++;
+                    }
+                    else
+                    {
+                        deliveredPresents.Add((Position)currentPosition1.Clone(), 1);
+                    }
+                }
+                else
+                {
+                    currentPosition2.Move(direction);
+                    if (deliveredPresents.ContainsKey(currentPosition2))
+                    {
+                        deliveredPresents[currentPosition2]++;
+                    }
+                    else
+                    {
+                        deliveredPresents.Add((Position)currentPosition2.Clone(), 1);
+                    }
+                }
+                santa = !santa;
+
+            }
+
+            System.Console.WriteLine($"Part 2: Delivered presents to {deliveredPresents.Where(p => p.Value >= 1).Count()} houses.");
+        }       
     }
 
     public class Position : IEquatable<Position>, ICloneable
