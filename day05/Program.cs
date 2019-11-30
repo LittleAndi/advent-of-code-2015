@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 
 namespace day05
 {
@@ -6,7 +8,15 @@ namespace day05
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var presents = File.ReadAllLines("input.txt")
+                .Where(l => !string.IsNullOrWhiteSpace(l))
+                .ToList();
         }
+    }
+
+    public class NaughtyOrNice
+    {
+        public string Input { get; set; }
+        public bool IsNice => false;
     }
 }
