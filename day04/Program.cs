@@ -11,7 +11,8 @@ namespace day04
             var input = "yzbqklnj";
 
             Part1(input);
-        }   
+            Part2(input);
+        }
 
         static void Part1(string input)
         {
@@ -24,14 +25,38 @@ namespace day04
                     n++;
                     string hash = GetMd5Hash(md5hash, string.Concat(input, n));
                     //System.Console.WriteLine(hash);
-                    if (hash.StartsWith("00000")) {
+                    if (hash.StartsWith("00000"))
+                    {
                         done = true;
                         //System.Console.WriteLine(string.Concat(input, n));
                         //System.Console.WriteLine(hash);
                     }
                 }
                 System.Console.WriteLine($"Part 1: {n}");
-                
+
+            }
+        }
+
+        static void Part2(string input)
+        {
+            using (MD5 md5hash = MD5.Create())
+            {
+                var done = false;
+                int n = 0;
+                while (!done)
+                {
+                    n++;
+                    string hash = GetMd5Hash(md5hash, string.Concat(input, n));
+                    //System.Console.WriteLine(hash);
+                    if (hash.StartsWith("000000"))
+                    {
+                        done = true;
+                        //System.Console.WriteLine(string.Concat(input, n));
+                        //System.Console.WriteLine(hash);
+                    }
+                }
+                System.Console.WriteLine($"Part 1: {n}");
+
             }
         }
         static string GetMd5Hash(MD5 md5Hash, string input)
