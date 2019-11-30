@@ -19,14 +19,27 @@ namespace day05
         public string Input { get; set; }
         public bool IsNice => ContainsRepeatingLetters && !ContainsInvalidStrings;
 
-        public bool ContainsAtLeastThreeVowels => false;
+        public bool ContainsAtLeastThreeVowels
+        {
+            get
+            {
+                var vowels = "aeiou";
+                var vowelCount = 0;
+                foreach (var item in Input)
+                {
+                    if (vowels.Contains(item)) vowelCount++;
+                }
+
+                return vowelCount >= 3;
+            }
+        }
         public bool ContainsRepeatingLetters
         {
             get
             {
                 for (int i = 1; i < Input.Length; i++)
                 {
-                    if (Input[i] == Input[i-1]) return true;
+                    if (Input[i] == Input[i - 1]) return true;
                 }
                 return false;
             }
