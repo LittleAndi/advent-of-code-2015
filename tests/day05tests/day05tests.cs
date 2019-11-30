@@ -22,6 +22,18 @@ namespace day05tests
         [Theory]
         [InlineData("ugknbfddgicrmopn", true)]
         [InlineData("aaa", true)]
+        [InlineData("jchzalrnumimnmhp", true)]
+        [InlineData("haegwjzuvuyypxyu", true)]
+        [InlineData("dvszwmarrgswjxmb", false)]
+        public void TestVowels(string input, bool expected)
+        {
+            var non = new NaughtyOrNice{ Input = input };
+            non.ContainsAtLeastThreeVowels.ShouldBe(expected);
+        }
+
+        [Theory]
+        [InlineData("ugknbfddgicrmopn", true)]
+        [InlineData("aaa", true)]
         [InlineData("jchzalrnumimnmhp", false)]
         [InlineData("haegwjzuvuyypxyu", true)]
         [InlineData("dvszwmarrgswjxmb", true)]

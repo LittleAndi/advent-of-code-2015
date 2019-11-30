@@ -19,6 +19,7 @@ namespace day05
         public string Input { get; set; }
         public bool IsNice => ContainsRepeatingLetters && !ContainsInvalidStrings;
 
+        public bool ContainsAtLeastThreeVowels => false;
         public bool ContainsRepeatingLetters
         {
             get
