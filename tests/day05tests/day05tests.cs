@@ -15,7 +15,7 @@ namespace day05tests
         [InlineData("dvszwmarrgswjxmb", false)]
         public void TestIsNice(string input, bool expected)
         {
-            var non = new NaughtyOrNice{ Input = input };
+            var non = new NaughtyOrNice { Input = input };
             non.IsNice.ShouldBe(expected);
         }
 
@@ -27,7 +27,7 @@ namespace day05tests
         [InlineData("dvszwmarrgswjxmb", false)]
         public void TestVowels(string input, bool expected)
         {
-            var non = new NaughtyOrNice{ Input = input };
+            var non = new NaughtyOrNice { Input = input };
             non.ContainsAtLeastThreeVowels.ShouldBe(expected);
         }
 
@@ -39,8 +39,20 @@ namespace day05tests
         [InlineData("dvszwmarrgswjxmb", true)]
         public void TestRepeatingLetters(string input, bool expected)
         {
-            var non = new NaughtyOrNice{ Input = input };
+            var non = new NaughtyOrNice { Input = input };
             non.ContainsRepeatingLetters.ShouldBe(expected);
+        }
+
+        [Theory]
+        [InlineData("qjhvhtzxzqqjkmpb", true)]
+        [InlineData("xxyxx", true)]
+        [InlineData("uurcxstgmygtbstg", false)]
+        [InlineData("ieodomkazucvgmuy", true)]
+        [InlineData("ieodfmkazucvgmuy", false)]
+        public void TestRepeatingLettersWithSpace(string input, bool expected)
+        {
+            var non = new NaughtyOrNice { Input = input };
+            non.ContainsRepeatingLettersWithSpace.ShouldBe(expected);
         }
 
         [Theory]
@@ -51,7 +63,7 @@ namespace day05tests
         [InlineData("dvszwmarrgswjxmb", false)]
         public void TestInvalidStrings(string input, bool expected)
         {
-            var non = new NaughtyOrNice{ Input = input };
+            var non = new NaughtyOrNice { Input = input };
             non.ContainsInvalidStrings.ShouldBe(expected);
         }
     }

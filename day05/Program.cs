@@ -54,7 +54,17 @@ namespace day05
                 return false;
             }
         }
-
+        public bool ContainsRepeatingLettersWithSpace
+        {
+            get
+            {
+                for (int i = 2; i < Input.Length; i++)
+                {
+                    if (Input[i] == Input[i - 2]) return true;
+                }
+                return false;
+            }
+        }
         public bool ContainsInvalidStrings
         {
             get
