@@ -78,6 +78,17 @@ namespace day05
             }
         }
 
-        public bool ContainsRepeatingCharacterPair => false;
+        public bool ContainsRepeatingCharacterPair
+        {
+            get 
+            {
+                for (int i = 0; i < Input.Length-2; i++)
+                {
+                    var test = Input.Substring(i, 2);
+                    if (Input.Replace(test, "..").Count(c => c.Equals('.')) >= 4) return true;
+                }
+                return false;
+            }
+        }
     }
 }
