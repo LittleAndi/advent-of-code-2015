@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace day05
 {
@@ -8,9 +9,18 @@ namespace day05
     {
         static void Main(string[] args)
         {
-            var presents = File.ReadAllLines("input.txt")
+            var nonStrings = File.ReadAllLines("input.txt")
                 .Where(l => !string.IsNullOrWhiteSpace(l))
+                .Select(l => new NaughtyOrNice { Input = l })
                 .ToList();
+
+            Part1(nonStrings);
+        }
+
+        static void Part1(List<NaughtyOrNice> nonStrings)
+        {
+            var niceCount = nonStrings.Where(n => n.IsNice).Count();
+            System.Console.WriteLine($"Found {niceCount} nice strings.");
         }
     }
 
