@@ -66,5 +66,16 @@ namespace day05tests
             var non = new NaughtyOrNice { Input = input };
             non.ContainsInvalidStrings.ShouldBe(expected);
         }
+        [Theory]
+        [InlineData("qjhvhtzxzqqjkmpb", true)]
+        [InlineData("xxyxx", true)]
+        [InlineData("uurcxstgmygtbstg", true)]
+        [InlineData("ieodomkazucvgmuy", false)]
+        public void TestRepeatingCharacterPair(string input, bool expected)
+        {
+            var non = new NaughtyOrNice { Input = input };
+            non.ContainsRepeatingCharacterPair.ShouldBe(expected);
+        }
+
     }
 }

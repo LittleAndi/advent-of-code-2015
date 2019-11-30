@@ -77,5 +77,7 @@ namespace day05
                 return containsInvalidChars;
             }
         }
+
+        public bool ContainsRepeatingCharacterPair => false;
     }
 }
