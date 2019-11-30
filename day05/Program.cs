@@ -15,12 +15,20 @@ namespace day05
                 .ToList();
 
             Part1(nonStrings);
+            Part2(nonStrings);
+
         }
 
         static void Part1(List<NaughtyOrNice> nonStrings)
         {
             var niceCount = nonStrings.Where(n => n.IsNice).Count();
-            System.Console.WriteLine($"Found {niceCount} nice strings.");
+            System.Console.WriteLine($"Part 1: Found {niceCount} nice strings.");
+        }
+
+        static void Part2(List<NaughtyOrNice> nonStrings)
+        {
+            var niceCount = nonStrings.Where(n => n.IsNiceToo).Count();
+            System.Console.WriteLine($"Part 2: Found {niceCount} nice strings.");
         }
     }
 
@@ -28,6 +36,7 @@ namespace day05
     {
         public string Input { get; set; }
         public bool IsNice => ContainsAtLeastThreeVowels && ContainsRepeatingLetters && !ContainsInvalidStrings;
+        public bool IsNiceToo => ContainsRepeatingLettersWithSpace && ContainsRepeatingCharacterPair;
 
         public bool ContainsAtLeastThreeVowels
         {
@@ -80,9 +89,9 @@ namespace day05
 
         public bool ContainsRepeatingCharacterPair
         {
-            get 
+            get
             {
-                for (int i = 0; i < Input.Length-2; i++)
+                for (int i = 0; i < Input.Length - 2; i++)
                 {
                     var test = Input.Substring(i, 2);
                     if (Input.Replace(test, "..").Count(c => c.Equals('.')) >= 4) return true;
