@@ -17,7 +17,7 @@ namespace day05
     public class NaughtyOrNice
     {
         public string Input { get; set; }
-        public bool IsNice => ContainsRepeatingLetters && !ContainsInvalidStrings;
+        public bool IsNice => ContainsAtLeastThreeVowels && ContainsRepeatingLetters && !ContainsInvalidStrings;
 
         public bool ContainsAtLeastThreeVowels
         {
