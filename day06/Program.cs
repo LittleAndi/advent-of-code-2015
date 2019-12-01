@@ -19,6 +19,7 @@ namespace day06
                 .ToList();
 
             Part1(lampActions);
+            Part2(lampActions);
         }
 
         static void Part1(List<LampAction> lampActions)
@@ -68,7 +69,58 @@ namespace day06
                 }
             }
 
-            System.Console.WriteLine(lamps);
+            System.Console.WriteLine($"Part 1: {lamps} lamps on.");
+        }
+
+        static void Part2(List<LampAction> lampActions)
+        {
+            var grid = new int[1000, 1000];
+            foreach (var item in lampActions)
+            {
+                switch (item.Command)
+                {
+                    case Command.ON:
+                        for (int y = item.Y1; y <= item.Y2; y++)
+                        {
+                            for (int x = item.X1; x <= item.X2; x++)
+                            {
+                                grid[x, y]++;
+                            }
+                        }
+                        break;
+                    case Command.OFF:
+                        for (int y = item.Y1; y <= item.Y2; y++)
+                        {
+                            for (int x = item.X1; x <= item.X2; x++)
+                            {
+                                grid[x, y]--;
+                                if (grid[x, y] < 0) grid[x, y] = 0;
+                            }
+                        }
+                        break;
+                    case Command.TOGGLE:
+                        for (int y = item.Y1; y <= item.Y2; y++)
+                        {
+                            for (int x = item.X1; x <= item.X2; x++)
+                            {
+                                grid[x, y] += 2;
+                            }
+                        }
+                        break;
+                }
+
+            }
+
+            int brightness = 0;
+            for (int y = 0; y <= grid.GetUpperBound(1); y++)
+            {
+                for (int x = 0; x <= grid.GetUpperBound(0); x++)
+                {
+                    brightness += grid[x,y];
+                }
+            }
+
+            System.Console.WriteLine($"Part 2: {brightness} in total brightness.");
         }
     }
 
